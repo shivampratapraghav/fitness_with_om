@@ -1,87 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Fitness With Om</title>
-<link rel="stylesheet" href="style.css">
+<style>
+body{font-family: system-ui, sans-serif; margin:0; background:#f8fff8;}
+header{display:flex; justify-content:space-between; align-items:center; padding:15px; background:white; box-shadow:0 2px 10px rgba(0,0,0,0.05); position:sticky; top:0; z-index:10; flex-wrap:wrap;}
+.logo{font-weight:bold; font-size:20px;} .logo span{color:green;}
+.menu a{margin-left:10px; text-decoration:none; color:#333; font-weight:500; font-size:14px;}
+.btn-logout{display:none; background:#ef4444; color:white; border:none; padding:6px 12px; border-radius:6px; margin-left:8px; cursor:pointer;}
+.btn-profile{display:none; background:#22c55e; color:white; border:none; padding:6px 12px; border-radius:6px; margin-left:8px; cursor:pointer;}
+.hero{padding:30px 20px; text-align:center; background:#e8ffe8;}
+.hero h1{font-size:32px; line-height:1.2;}
+.hero button{background:#16a34a; color:white; border:none; padding:14px 24px; border-radius:12px; font-size:16px; margin-top:10px;}
+.card{margin:20px; background:white; border:2px solid orange; border-radius:16px; padding:20px;}
+.profile-box{display:none; margin:20px; background:white; padding:20px; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.08);}
+.login-box{margin:20px; background:white; padding:20px; border-radius:16px; text-align:center;}
+input{width:90%; padding:12px; margin:8px 0; border-radius:8px; border:1px solid #ccc;}
+</style>
 </head>
 <body>
 
-<nav>
+<header>
   <div class="logo">Fitness <span>With Om</span> 💪</div>
-  <div class="nav-links">
+  <div class="menu">
     <a href="#workout">Workout</a>
     <a href="#diet">Diet</a>
     <a href="#contact">Contact</a>
+    <button id="profileBtn" class="btn-profile" onclick="showProfile()">My Profile</button>
+    <button id="logoutBtn" class="btn-logout" onclick="logout()">Logout</button>
   </div>
-</nav>
+</header>
 
-<!-- LOGIN POPUP - Yahi Band Nahi Ho Raha Tha -->
-<div id="loginModal" class="modal">
-  <div class="modal-content">
-    <h2>Login to Continue 🔐</h2>
-    <p>PDF aapke WhatsApp & Email par aayega</p>
-    <input type="text" id="userMobile" placeholder="Mobile Number - 98765 43210">
-    <input type="email" id="userEmail" placeholder="Email ID - your@email.com">
-    <button id="sendOtpBtn" class="btn btn-green full">Send OTP</button>
-    <div id="otpSection" style="display:none; margin-top:15px;">
-      <input type="text" id="otpInput" placeholder="Enter OTP - 1234">
-      <button id="verifyOtpBtn" class="btn btn-blue full">Verify & Login</button>
-    </div>
-    <p id="loginStatus" style="margin-top:10px; color:green;"></p>
-  </div>
+<div class="hero">
+  <p>🇮🇳 India's #1 Veg Fitness Plans</p>
+  <h1>Your Fitness.<br>Your Journey.<br>Your Success.</h1>
+  <p>Pure Veg Indian Diet Plans + Beginner Workouts starting at just Rs 99.</p>
+  <button onclick="document.getElementById('loginSection').scrollIntoView()">Get Your Plan @ Rs 99</button>
+  <br><br>
+  <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600" style="width:100%; border-radius:20px; max-width:400px;">
 </div>
 
-<div class="hero-with-img">
-  <div class="hero-text">
-    <div class="badge">🇮🇳 India's #1 Veg Fitness Plans</div>
-    <h1>Your Fitness.<br>Your Journey.<br><span>Your Success.</span></h1>
-    <p>Pure Veg Indian Diet Plans + Beginner Workouts starting at just Rs 99.</p>
-    <a href="#diet" class="btn btn-green">Get Your Plan @ Rs 99</a>
-  </div>
-  <div class="hero-img"><img src="hero.jpg" alt="Fitness With Om"></div>
+<div id="loginSection" class="login-box">
+  <h3>Login to Continue</h3>
+  <input id="phone" placeholder="Enter Phone Number / Email">
+  <input id="otp" placeholder="Enter OTP (Demo: 1234)">
+  <p style="font-size:12px; color:green;">Demo OTP: 1234</p>
+  <button onclick="login()" style="background:#16a34a; color:white; padding:12px; width:95%; border:none; border-radius:8px;">Verify & Login</button>
 </div>
 
-<section id="workout" class="section">
-  <h2>Workout Plans</h2>
-  <div class="grid">
-    <div class="card"><img src="beginner.jpg" class="card-img"><h3>🏋️ Beginner Fitness</h3><p>Learn basic exercises</p></div>
-    <div class="card"><img src="muscle.jpg" class="card-img"><h3>💪 Muscle Building</h3><p>Strength training</p></div>
-    <div class="card"><img src="home.jpg" class="card-img"><h3>🏠 Home Workout</h3><p>No equipment workout</p></div>
-  </div>
-</section>
+<div id="myProfile" class="profile-box">
+  <h2>👤 My Profile</h2>
+  <p><b>Login ID:</b> <span id="p_user"></span></p>
+  <p><b>Plan:</b> No Active Plan</p>
+  <p><b>Email:</b> c32054764@gmail.com</p>
+  <p><b>WhatsApp:</b> +91 9084897757</p>
+  <hr>
+  <p style="color:green;">Welcome to Fitness With Om 🌱</p>
+</div>
 
-<section id="diet" class="section bg-white">
-  <h2>Diet Plans</h2>
-  <div class="grid">
-    <div class="card border-green"><img src="weightloss.jpg" class="card-img"><div class="badge-green">BESTSELLER</div><h3>Weight Loss Plan</h3><div class="price">Rs 99 <span>Rs 499</span></div><button onclick="orderNow('weightloss')" class="btn btn-green full">Order Now</button></div>
-    <div class="card border-blue"><img src="musclegain.jpg" class="card-img"><div class="badge-blue">MUSCLE GAIN</div><h3>Muscle Gain Plan</h3><div class="price blue">Rs 99 <span>Rs 499</span></div><button onclick="orderNow('musclegain')" class="btn btn-blue full">Order Now</button></div>
-    <div class="card" style="border:2px solid #f59e0b;"><img src="combo.jpg" class="card-img"><div class="badge" style="background:#fef3c7;color:#92400e;">COMBO 🔥</div><h3>Combo Plan</h3><div class="price" style="color:#d97706;">Rs 149 <span>Rs 999</span></div><button onclick="orderNow('combo')" class="btn full" style="background:#f59e0b;color:white;">Get Combo @ Rs 149</button></div>
-  </div>
-</section>
+<div id="diet" class="card">
+  <h3>Combo Plan</h3>
+  <h1 style="color:orange;">Rs 149 <span style="font-size:14px; color:gray; text-decoration:line-through;">Rs 999</span></h1>
+  <button style="background:orange; color:white; border:none; padding:12px; width:100%; border-radius:10px;">Get Combo @ Rs 149</button>
+</div>
 
-<section id="contact" class="section" style="text-align:center">
+<div id="contact" style="padding:30px 20px; text-align:center;">
   <h2>Contact Us</h2>
-  <div class="grid"><div class="card"><p><b>Email:</b> <span id="emailText"></span></p><p style="margin-top:10px"><b>Instagram:</b> <a id="instaLink" href="#" target="_blank" style="color:#16a34a;font-weight:700"><span id="instaText"></span></a></p><p style="margin-top:10px"><b>WhatsApp:</b> <span id="whatsappText"></span></p></div></div>
-</section>
-
-<footer><h2>Fitness With Om 🌱</h2><p>© 2025 Made with ❤️ in India</p></footer>
-<script src="script.js"></script>
-<div id="upiModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
-  <div style="background:white; padding:25px; border-radius:15px; width:90%; max-width:350px; text-align:center;">
-    <h3 id="upiPlanName" style="margin-bottom:10px;">Weight Loss Plan - Rs 99</h3>
-    <img id="upiQR" src="" style="width:250px; height:250px; border:1px solid #ddd; border-radius:10px;">
-    <p style="margin:10px 0; font-size:14px;">UPI ID: <b>9084897757@ptyes</b></p>
-    
-    <a id="upiPayBtn" href="" style="display:block; background:#16a34a; color:white; padding:12px; border-radius:8px; text-decoration:none; font-weight:bold; margin:10px 0;">Pay on PhonePe / GPay / Paytm</a>
-    
-    <p style="font-size:12px; color:#666;">Pay karne ke baad UTR / Transaction No. dalo</p>
-    <input id="utrInput" type="text" placeholder="UTR No. Ex: 312345678901" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ccc; border-radius:5px;">
-    
-    <button onclick="verifyAndDownload()" style="width:100%; background:#000; color:white; padding:12px; border-radius:8px; border:none; font-weight:bold;">Verify & Download PDF</button>
-    <button onclick="document.getElementById('upiModal').style.display='none'" style="margin-top:10px; background:none; border:none; color:red;">Cancel</button>
+  <div style="background:white; padding:20px; border-radius:16px;">
+    <p>Email: c32054764@gmail.com</p>
+    <p>Instagram: <span style="color:green;">@fitness_with_yo</span></p>
+    <p>WhatsApp: +91 9084897757</p>
   </div>
 </div>
+
+<script>
+function login(){
+  const phone = document.getElementById('phone').value;
+  const otp = document.getElementById('otp').value;
+  if(otp === '1234' && phone !== ''){
+    localStorage.setItem('fwo_user', phone);
+    localStorage.setItem('fwo_logged', 'yes');
+    alert('Login Successful!');
+    updateUI();
+  } else {
+    alert('OTP galat hai! Demo OTP 1234 daalo');
+  }
+}
+function logout(){
+  localStorage.clear();
+  document.getElementById('myProfile').style.display='none';
+  document.getElementById('profileBtn').style.display='none';
+  document.getElementById('logoutBtn').style.display='none';
+  document.getElementById('loginSection').style.display='block';
+  alert('Logged Out!');
+  window.scrollTo(0,0);
+}
+function showProfile(){
+  document.getElementById('myProfile').style.display='block';
+  document.getElementById('myProfile').scrollIntoView();
+  document.getElementById('p_user').innerText = localStorage.getItem('fwo_user');
+}
+function updateUI(){
+  if(localStorage.getItem('fwo_logged') === 'yes'){
+    document.getElementById('loginSection').style.display='none';
+    document.getElementById('profileBtn').style.display='inline-block';
+    document.getElementById('logoutBtn').style.display='inline-block';
+    document.getElementById('p_user').innerText = localStorage.getItem('fwo_user');
+  }
+}
+updateUI();
+</script>
+
 </body>
 </html>
