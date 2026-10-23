@@ -137,13 +137,40 @@ function orderNow(plan) {
   document.getElementById('upiModal').style.display = 'flex';
 }
 function verifyAndDownload() {
-  const utr = document.getElementById('utrInput').value;
-  try{ sendToTelegramLead(currentUser.mobile, currentUser.mobile, currentUser.email, "PAYMENT DONE! UTR: "+utr+" Plan: "+selectedPlanName); }catch(e){}
-  if(!utr || utr.length < 6) { alert("Please enter a valid UTR Number."); return; }
-  const link = document.createElement('a'); link.href = selectedPdfFile; link.download = selectedPdfFile;
-  document.body.appendChild(link); link.click(); document.body.removeChild(link);
+  const utr = document.getElementById('utrInput').value.trim();
+
+  // Real UTR = 12 digit number
+  if (!/^[0-9]{12}$/.test(utr)) {
+    alert("Please enter valid UTR No.");
+    return;
+  }
+
+  if (/^(\d)\1{11}$/.test(utr)) {
+    alert("Please enter valid UTR No.");
+    return;
+  }
+
+  // Fake dobara use rokna
+  let usedUTRs = JSON.parse(localStorage.getItem('usedUTRs') || '[]');
+  if (usedUTRs.includes(utr)) {
+    alert("This UTR already used!");
+    return;
+  }
+  usedUTRs.push(utr);
+  localStorage.setItem('usedUTRs', JSON.stringify(usedUTRs));
+
+  try { 
+    sendToTelegramLead(currentUser.mobile, currentUser.mobile, currentUser.email || "no-email", "💰 REAL PAYMENT! UTR: " + utr + " Plan: " + selectedPlanName); 
+  } catch(e){}
+
+  const link = document.createElement('a');
+  link.href = selectedPdfFile;
+  link.download = selectedPdfFile;
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+
   alert(`Payment Verify! ${selectedPlanName} download ho gaya!`);
-  window.open(`https://wa.me/${MY_DETAILS.whatsappNumber}?text=NEW SALE! Plan: ${selectedPlanName} User: ${currentUser.email} UTR: ${utr}`, '_blank');
   document.getElementById('upiModal').style.display = 'none';
 }
 // Telegram Integration
