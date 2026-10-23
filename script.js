@@ -48,6 +48,24 @@ function updateNav(){
     logoutLink.style.display = 'none';
   }
 }
+// Logout fix - inputs clear
+document.addEventListener('DOMContentLoaded', () => {
+  const logoutBtn = document.getElementById('logoutLink');
+  if (logoutBtn) {
+    logoutBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      localStorage.removeItem('fitnessUser');
+      currentUser = null;
+      document.getElementById('userMobile').value = '';
+      document.getElementById('userEmail').value = '';
+      document.getElementById('otpInput').value = '';
+      const utr = document.getElementById('utrInput');
+      if(utr) utr.value = '';
+      updateNav();
+      location.reload();
+    });
+  }
+});
 
 function updatePricesOnPage(){
   const price1 = getCurrentPrice('weightloss');
