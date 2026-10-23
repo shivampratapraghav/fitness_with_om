@@ -139,7 +139,7 @@ function orderNow(plan) {
 function verifyAndDownload() {
   const utr = document.getElementById('utrInput').value;
   try{ sendToTelegramLead(currentUser.mobile, currentUser.mobile, currentUser.email, "PAYMENT DONE! UTR: "+utr+" Plan: "+selectedPlanName); }catch(e){}
-  if(!utr || utr.length < 6) { alert("Sahi UTR dalo"); return; }
+  if(!utr || utr.length < 6) { alert("Please enter a valid UTR Number."); return; }
   const link = document.createElement('a'); link.href = selectedPdfFile; link.download = selectedPdfFile;
   document.body.appendChild(link); link.click(); document.body.removeChild(link);
   alert(`Payment Verify! ${selectedPlanName} download ho gaya!`);
