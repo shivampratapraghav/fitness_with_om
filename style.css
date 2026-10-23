@@ -2,60 +2,32 @@
 body{background:#f8fafc;color:#0f172a}
 nav{background:white;display:flex;justify-content:space-between;align-items:center;padding:16px 6%;position:sticky;top:0;box-shadow:0 2px 10px rgba(0,0,0,0.06);z-index:10}
 .logo{font-weight:900;font-size:24px} .logo span{color:#16a34a}
-.nav-links a{margin-left:18px;text-decoration:none;color:#334155;font-weight:600;font-size:14px}
-.hero{background:linear-gradient(135deg,#dcfce7,#fff);padding:80px 6%;text-align:center}
-.hero h1{font-size:46px;font-weight:900;line-height:1.1} .hero h1 span{color:#16a34a}
-.hero p{max-width:600px;margin:20px auto;color:#475569;font-size:18px}
-.badge{background:#dcfce7;color:#166534;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:12px}
-.btn{padding:14px 28px;border-radius:12px;font-weight:700;display:inline-block;text-decoration:none;border:none;cursor:pointer;transition:0.2s}
-.btn-green{background:#16a34a;color:white;box-shadow:0 8px 20px rgba(22,163,74,0.3)}
-.btn-blue{background:#2563eb;color:white} .full{width:100%;text-align:center}
-.trust{font-size:13px;color:#16a34a;font-weight:700;margin-top:15px}
+.nav-links{display:flex;align-items:center;flex-wrap:wrap}
+.nav-links a{margin-left:18px;text-decoration:none;color:#334155;font-weight:600;font-size:14px;cursor:pointer}
+.nav-links a:hover{color:#16a34a}
 .section{padding:60px 6%} .section h2{text-align:center;font-size:32px;font-weight:800} .sub{text-align:center;color:#64748b;margin:10px auto 25px}
 .bg-white{background:white}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:22px;margin-top:20px}
 .card{background:white;padding:26px;border-radius:18px;box-shadow:0 6px 30px rgba(0,0,0,0.06);border:1px solid #eef2f7}
-.card h3{font-size:18px} .card p{color:#64748b;margin-top:8px;font-size:14px} .card ul{list-style:none;margin-top:10px;font-size:13px;color:#334155}
+.card h3{font-size:18px} .card p{color:#64748b;margin-top:8px;font-size:14px}
 .price{font-size:28px;font-weight:900;color:#16a34a;margin:14px 0} .price span{font-size:14px;color:#94a3b8;text-decoration:line-through} .price.blue{color:#2563eb}
 .border-green{border:2px solid #16a34a} .border-blue{border:2px solid #2563eb}
+.badge{background:#dcfce7;color:#166534;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;display:inline-block;margin-bottom:12px}
 .badge-green{background:#dcfce7;color:#166534;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700} 
 .badge-blue{background:#dbeafe;color:#1e40af;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700}
-footer{background:#0f172a;color:#94a3b8;padding:40px 6%;text-align:center} .small{font-size:12px;color:#475569;margin-top:10px}
+.btn{padding:14px 28px;border-radius:12px;font-weight:700;display:inline-block;text-decoration:none;border:none;cursor:pointer}
+.btn-green{background:#16a34a;color:white} .btn-blue{background:#2563eb;color:white} .full{width:100%;text-align:center}
 .hero-with-img{display:flex;align-items:center;justify-content:space-between;gap:30px;padding:60px 6%;background:linear-gradient(135deg,#dcfce7,#fff)}
-.hero-img img{width:400px;border-radius:20px;box-shadow:0 20px 40px rgba(0,0,0,0.15);object-fit:cover}
+.hero-img img{width:400px;border-radius:20px;object-fit:cover}
 .card-img{width:100%;height:180px;object-fit:cover;border-radius:12px;margin-bottom:14px}
 @media(max-width:768px){.hero-with-img{flex-direction:column;text-align:center}.hero-img img{width:100%;max-width:350px}}
-/* LOGIN MODAL - FIX */
-.modal{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.7);
-  display:none;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-}
-.modal.show{
-  display:flex;
-}
-.modal-content{
-  background:white;
-  padding:30px;
-  border-radius:16px;
-  width:90%;
-  max-width:400px;
-  text-align:center;
-  box-shadow:0 10px 30px rgba(0,0,0,0.3);
-}
-.modal-content h2{margin-bottom:8px}
-.modal-content input{
-  width:100%;
-  padding:12px;
-  margin:8px 0;
-  border:1px solid #ddd;
-  border-radius:8px;
-  font-size:14px;
-}
+.modal{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:none;align-items:center;justify-content:center;z-index:9999}
+.modal.show{display:flex}
+.modal-content{background:white;padding:30px;border-radius:16px;width:90%;max-width:400px;text-align:center}
+.modal-content input{width:100%;padding:12px;margin:8px 0;border:1px solid #ddd;border-radius:8px}
+.pdf-btn{display:block;margin-top:14px;padding:10px 16px;background:#16a34a;color:white !important;border-radius:10px;font-weight:700;text-decoration:none;font-size:13px;width:100%;text-align:center}
+.pdf-btn:hover{background:#15803d}
+.free-note{margin-top:10px;font-size:11px;color:#ef4444;font-weight:700;background:#fef2f2;padding:6px 10px;border-radius:20px;text-align:center;border:1px dashed #fca5a5}
+#myProfileLink{background:#f1f5f9;padding:6px 12px;border-radius:20px}
+#logoutLink{color:#ef4444 !important;background:#fef2f2;padding:6px 12px;border-radius:20px;font-weight:700}
+footer{background:#0f172a;color:#94a3b8;padding:40px 6%;text-align:center}

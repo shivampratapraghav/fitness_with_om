@@ -13,11 +13,13 @@
   <div class="nav-links">
     <a href="#workout">Workout</a>
     <a href="#diet">Diet</a>
+    <a href="#supplement">Supplements</a>
     <a href="#contact">Contact</a>
+    <a id="myProfileLink">My Profile</a>
+    <a id="logoutLink" style="display:none;">Logout</a>
   </div>
 </nav>
 
-<!-- LOGIN POPUP - Yahi Band Nahi Ho Raha Tha -->
 <div id="loginModal" class="modal">
   <div class="modal-content">
     <h2>Login to Continue 🔐</h2>
@@ -46,39 +48,105 @@
 <section id="workout" class="section">
   <h2>Workout Plans</h2>
   <div class="grid">
-    <div class="card"><img src="beginner.jpg" class="card-img"><h3>🏋️ Beginner Fitness</h3><p>Learn basic exercises</p></div>
-    <div class="card"><img src="muscle.jpg" class="card-img"><h3>💪 Muscle Building</h3><p>Strength training</p></div>
-    <div class="card"><img src="home.jpg" class="card-img"><h3>🏠 Home Workout</h3><p>No equipment workout</p></div>
+    <div class="card">
+      <img src="beginner.jpg" class="card-img">
+      <h3>🏋️ Beginner Fitness</h3>
+      <p>Learn basic exercises</p>
+      <a href="./beginner-fitness.pdf" class="pdf-btn">📄 Download Beginner Plan</a>
+      <p class="free-note">🎁 FREE Only For 30 Days</p>
+    </div>
+    <div class="card">
+      <img src="muscle.jpg" class="card-img">
+      <h3>💪 Muscle Building</h3>
+      <p>Strength training</p>
+      <a href="./muscle-building.pdf" class="pdf-btn">💪 Download Muscle Plan</a>
+      <p class="free-note">🎁 FREE Only For 30 Days</p>
+    </div>
+    <div class="card">
+      <img src="home.jpg" class="card-img">
+      <h3>🏠 Home Workout</h3>
+      <p>No equipment workout</p>
+      <a href="./home-workout.pdf" class="pdf-btn">🏠 Download Home Plan</a>
+      <p class="free-note">🎁 FREE Only For 30 Days</p>
+    </div>
   </div>
 </section>
 
 <section id="diet" class="section bg-white">
   <h2>Diet Plans</h2>
+  <p class="offer-days-left" style="text-align:center;background:#ef4444;color:white;padding:8px;border-radius:20px;font-weight:700;margin:10px auto;max-width:400px;display:none;"></p>
   <div class="grid">
-    <div class="card border-green"><img src="weightloss.jpg" class="card-img"><div class="badge-green">BESTSELLER</div><h3>Weight Loss Plan</h3><div class="price">Rs 99 <span>Rs 499</span></div><button onclick="orderNow('weightloss')" class="btn btn-green full">Order Now</button></div>
-    <div class="card border-blue"><img src="musclegain.jpg" class="card-img"><div class="badge-blue">MUSCLE GAIN</div><h3>Muscle Gain Plan</h3><div class="price blue">Rs 99 <span>Rs 499</span></div><button onclick="orderNow('musclegain')" class="btn btn-blue full">Order Now</button></div>
-    <div class="card" style="border:2px solid #f59e0b;"><img src="combo.jpg" class="card-img"><div class="badge" style="background:#fef3c7;color:#92400e;">COMBO 🔥</div><h3>Combo Plan</h3><div class="price" style="color:#d97706;">Rs 149 <span>Rs 999</span></div><button onclick="orderNow('combo')" class="btn full" style="background:#f59e0b;color:white;">Get Combo @ Rs 149</button></div>
+    <div class="card border-green">
+      <img src="weightloss.jpg" class="card-img">
+      <div class="badge-green">BESTSELLER</div>
+      <h3>Weight Loss Plan</h3>
+      <div class="price" id="price-weightloss">Rs 1 <span>Rs 499</span></div>
+      <button onclick="orderNow('weightloss')" id="btn-weightloss" class="btn btn-green full">Order Now @ Rs 1</button>
+    </div>
+    <div class="card border-blue">
+      <img src="musclegain.jpg" class="card-img">
+      <div class="badge-blue">MUSCLE GAIN</div>
+      <h3>Muscle Gain Plan</h3>
+      <div class="price blue" id="price-musclegain">Rs 1 <span>Rs 499</span></div>
+      <button onclick="orderNow('musclegain')" id="btn-musclegain" class="btn btn-blue full">Order Now @ Rs 1</button>
+    </div>
+    <div class="card" style="border:2px solid #f59e0b;">
+      <img src="combo.jpg" class="card-img">
+      <div class="badge" style="background:#fef3c7;color:#92400e;">COMBO 🔥</div>
+      <h3>Combo Plan</h3>
+      <div class="price" id="price-combo" style="color:#d97706;">Rs 1 <span>Rs 999</span></div>
+      <button onclick="orderNow('combo')" id="btn-combo" class="btn full" style="background:#f59e0b;color:white;">Get Combo @ Rs 1</button>
+    </div>
   </div>
 </section>
 
-<section id="contact" class="section" style="text-align:center">
+<section id="supplement" class="section">
+  <h2>Gym Supplement 💊</h2>
+  <p class="sub">Premium supplement guides for best results</p>
+  <div class="grid">
+    <div class="card border-green">
+      <img src="supplement1.jpg" class="card-img">
+      <div class="badge-green">PREMIUM GUIDE</div>
+      <h3>Gym Supplements Premium</h3>
+      <p>Complete supplement guide</p>
+      <a href="./Gym_Supplements_Premium_Guide.pdf" class="pdf-btn">💊 Download Premium Guide</a>
+      <p class="free-note">🎁 FREE Only For 30 Days</p>
+    </div>
+    <div class="card border-blue">
+      <img src="supplement2.jpg" class="card-img">
+      <div class="badge-blue">RECOVERY</div>
+      <h3>Gym Body Recovery Guide</h3>
+      <p>Fast recovery & muscle soreness guide</p>
+      <a href="./Gym_Body_Recovery_Guide.pdf" class="pdf-btn">🧘 Download Recovery Guide</a>
+      <p class="free-note">🎁 FREE Only For 30 Days</p>
+    </div>
+    <div class="card" style="border:2px solid #f59e0b;">
+      <img src="supplement3.jpg" class="card-img">
+      <div class="badge" style="background:#fef3c7;color:#92400e;">VEG PROTEIN 🌱</div>
+      <h3>Vegetarian High Protein</h3>
+      <p>Pure veg high protein diet for gym</p>
+      <a href="./Vegetarian_High_Protein_Diet_Guide.pdf" class="pdf-btn" style="background:#f59e0b;">🌱 Download Veg Protein Guide</a>
+      <p class="free-note">🎁 FREE Only For 30 Days</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="section bg-white" style="text-align:center">
   <h2>Contact Us</h2>
   <div class="grid"><div class="card"><p><b>Email:</b> <span id="emailText"></span></p><p style="margin-top:10px"><b>Instagram:</b> <a id="instaLink" href="#" target="_blank" style="color:#16a34a;font-weight:700"><span id="instaText"></span></a></p><p style="margin-top:10px"><b>WhatsApp:</b> <span id="whatsappText"></span></p></div></div>
 </section>
 
 <footer><h2>Fitness With Om 🌱</h2><p>© 2025 Made with ❤️ in India</p></footer>
+
 <script src="script.js"></script>
+
 <div id="upiModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
   <div style="background:white; padding:25px; border-radius:15px; width:90%; max-width:350px; text-align:center;">
-    <h3 id="upiPlanName" style="margin-bottom:10px;">Weight Loss Plan - Rs 99</h3>
+    <h3 id="upiPlanName">Weight Loss Plan - Rs 99</h3>
     <img id="upiQR" src="" style="width:250px; height:250px; border:1px solid #ddd; border-radius:10px;">
-    <p style="margin:10px 0; font-size:14px;">UPI ID: <b>9084897757@ptyes</b></p>
-    
+    <p style="margin:10px 0;">UPI ID: <b>9084897757@ptyes</b></p>
     <a id="upiPayBtn" href="" style="display:block; background:#16a34a; color:white; padding:12px; border-radius:8px; text-decoration:none; font-weight:bold; margin:10px 0;">Pay on PhonePe / GPay / Paytm</a>
-    
-    <p style="font-size:12px; color:#666;">Pay karne ke baad UTR / Transaction No. dalo</p>
-    <input id="utrInput" type="text" placeholder="UTR No. Ex: 312345678901" style="width:100%; padding:10px; margin:10px 0; border:1px solid #ccc; border-radius:5px;">
-    
+    <input id="utrInput" type="text" placeholder="UTR No." style="width:100%; padding:10px; margin:10px 0; border:1px solid #ccc; border-radius:5px;">
     <button onclick="verifyAndDownload()" style="width:100%; background:#000; color:white; padding:12px; border-radius:8px; border:none; font-weight:bold;">Verify & Download PDF</button>
     <button onclick="document.getElementById('upiModal').style.display='none'" style="margin-top:10px; background:none; border:none; color:red;">Cancel</button>
   </div>
